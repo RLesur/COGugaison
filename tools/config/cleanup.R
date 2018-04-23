@@ -58,10 +58,8 @@ if (file.exists(description)) {
   cat("--Correction du fichier DESCRIPTION--\n")
   content <- readLines(description)
   content_utf8 <- reenc_nonascii_char(content, type = "ascii")
-  Encoding(content_utf8) <- "UTF-8"
-  content_nativeenc <- enc2native(content_utf8)
   out <- file(description, open = "w+", encoding = "native.enc")
-  writeLines(content_nativeenc, out, useBytes = TRUE)
+  writeLines(content_utf8, out, useBytes = TRUE)
   close(out)
 }
 cat("===Fin du clean===\n")
